@@ -1,0 +1,85 @@
+footer {
+    background: #3F51B5;
+    bottom: 0;
+    color: #FFF;
+    height: 270px;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+
+    .player {
+        &-image {
+            margin-bottom: auto;
+            margin-top: auto;
+
+            img {
+                border: 8px solid #FFF;
+                height: 150px;
+                width: 150px;
+            }
+        }
+
+        &-buttons {
+            font-size: 68px;
+            margin: auto 0;
+
+            div {
+                margin-bottom: auto;
+                margin-top: auto;
+            }
+
+            &-pause {
+                text-align: right;
+            }
+
+            &-play {
+                text-align: center;
+            }
+    
+            &-stop {
+                text-align: left;
+            }
+        }
+
+        &-icons {
+            &-pause, &-stop {
+                transform: scale(3);
+            }
+
+            &-play {
+                transform: scale(6);
+            }
+        }
+
+        &-progress {
+    
+            &-bar {
+                width: 81%;
+            }
+            
+            &-time {
+                font-weight: bold;
+                margin: 0 8px;
+            }
+        }
+
+        &-volume {
+            background-color: #FFF;
+
+            mat-slider {
+
+                width: 90%;
+            }
+        }
+    }
+}
+
+button {
+    color: #FFF;
+    background-color: transparent;
+    border: none;
+}
+
+mat-icon:hover {
+    color: #000 !important;
+}

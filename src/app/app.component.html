@@ -1,0 +1,16 @@
+<div class="content" role="main">
+    <mat-toolbar color="primary">
+        <mat-toolbar-row>
+            <span>{{ title }}</span>
+        </mat-toolbar-row>
+    </mat-toolbar>
+
+    <div class="body">
+        <div class="pt-4">
+            <app-songs-list [songsList]="songsList" (play)="playSong($event)"></app-songs-list>
+        </div>
+    </div>
+
+    <app-player [song]="selectedSong" (stop)="stopSong()"></app-player>
+</div>
+

@@ -1,0 +1,13 @@
+@use '@angular/material' as mat;
+
+mat-list-item {
+    height: auto !important;
+
+    &:hover {
+        background-color: #7986CB;
+    }
+}
+
+mat-icon:hover {
+    color: black !important;
+}

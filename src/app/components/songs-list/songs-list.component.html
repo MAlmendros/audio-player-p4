@@ -1,0 +1,20 @@
+<div class="songs-list">
+    <div class="song-search row mx-1 my-2">
+        <mat-form-field>
+            <mat-label>Buscar</mat-label>
+            <input matInput (keyup)="searchSongs($event)" placeholder="Introduzca título o autor..." #input>
+        </mat-form-field>
+    </div>
+
+    <mat-list>
+        <mat-list-item *ngFor="let song of filteredSongs; let i = index">
+            <mat-icon class="my-auto" matListItemIcon (click)="playSong(i)">play_circle_fill</mat-icon>
+            <mat-icon class="my-auto" matListItemIcon (click)="showDetails(i)">audiotrack</mat-icon>
+            <div matListItemTitle>{{ song.title }}</div>
+            <div matListItemLine>{{ song.author }}</div>
+            <div matListItemLine>
+                <app-song-detail *ngIf="song.showDetails" [song]="song"></app-song-detail>
+            </div>
+        </mat-list-item>
+    </mat-list>
+</div>

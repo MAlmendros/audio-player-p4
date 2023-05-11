@@ -1,0 +1,50 @@
+<footer *ngIf="showPlayer">
+    <div class="row pt-4 mx-4">
+        <div class="player-image col-4 col-md-3">
+            <img class="p-0" [src]="imageUrl">
+        </div>
+
+        <div class="player-buttons col-8 col-md-9">
+            <div class="row">
+                <div class="player-buttons-pause col-4 col-lg-5">
+                    <button mat-button (click)="pauseSong()">
+                        <mat-icon mat-list-icon class="player-icons-pause">pause_circle</mat-icon>
+                    </button>
+                </div>
+
+                <div class="player-buttons-play col-4 col-lg-2">
+                    <button mat-button (click)="playSong()">
+                        <mat-icon mat-list-icon class="player-icons-play">play_circle</mat-icon>
+                    </button>
+                </div>
+
+                <div class="player-buttons-stop col-4 col-lg-5">
+                    <button mat-button (click)="stopSong()">
+                        <mat-icon mat-list-icon class="player-icons-stop">stop_circle</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row pb-4 mx-4">
+        <div class="player-progress col-9 mt-4">
+            <span class="player-progress-time">{{ current }}</span>
+
+            <progress
+                class="player-progress-bar"
+                id="player-progress-seek"
+                max="{{ durationTime }}"
+                value="{{ currentTime }}">
+            </progress>
+            <span class="player-progress-time">{{ duration }}</span>
+
+        </div>
+
+        <div class="player-volume col-3 mt-2">
+            <mat-slider min="0" max="100" step="1" [displayWith]="formatVolume" showTickMarks discrete>
+                <input [value]="volume" (valueChange)="changeVolume($event)" matSliderThumb>
+            </mat-slider>
+        </div>
+    </div>
+</footer>
