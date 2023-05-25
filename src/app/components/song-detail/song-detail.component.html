@@ -4,64 +4,70 @@
             <div class="col-12 col-md-6 col-lg-4">
                 <mat-form-field>
                     <mat-label>Título</mat-label>
-                    <input matInput #input formControlName="title">
+                    <input matInput #input formControlName="title" required>
                 </mat-form-field>
             </div>
     
             <div class="col-12 col-md-6 col-lg-4">
                 <mat-form-field>
                     <mat-label>Autor</mat-label>
-                    <input matInput #input formControlName="author">
+                    <input matInput #input formControlName="author" required>
                 </mat-form-field>
             </div>
     
             <div class="col-12 col-md-6 col-lg-4">
                 <mat-form-field>
                     <mat-label>Año</mat-label>
-                    <input matInput #input formControlName="year">
+                    <input matInput #input formControlName="year" required>
                 </mat-form-field>
             </div>
 
             <div class="col-12 col-md-6 col-lg-4">
                 <mat-form-field>
                     <mat-label>Álbum</mat-label>
-                    <input matInput #input formControlName="album">
+                    <input matInput #input formControlName="album" required>
                 </mat-form-field>
             </div>
 
             <div class="col-12 col-md-6 col-lg-4">
                 <mat-form-field>
                     <mat-label>Estilo</mat-label>
-                    <input matInput #input formControlName="genre">
+                    <input matInput #input formControlName="genre" required>
                 </mat-form-field>
             </div>
 
             <div class="col-12 col-md-6 col-lg-4">
                 <mat-form-field>
                     <mat-label>Discográfica</mat-label>
-                    <input matInput #input formControlName="label">
+                    <input matInput #input formControlName="label" required>
                 </mat-form-field>
             </div>
 
             <div class="col-12 col-md-6 col-lg-4">
                 <mat-form-field>
                     <mat-label>País</mat-label>
-                    <input matInput #input formControlName="country">
+                    <input matInput #input formControlName="country" required>
                 </mat-form-field>
             </div>
 
             <div class="col-12 col-md-6 col-lg-4">
                 <mat-form-field>
                     <mat-label>Duración</mat-label>
-                    <input matInput #input formControlName="duration">
+                    <input matInput #input formControlName="duration" required>
                 </mat-form-field>
             </div>
 
             <div class="col-12 col-md-6 col-lg-4">
                 <mat-form-field>
                     <mat-label>Productor</mat-label>
-                    <input matInput #input formControlName="producer">
+                    <input matInput #input formControlName="producer" required>
                 </mat-form-field>
+            </div>
+
+            <div class="btn-update col-12 mb-3">
+                <button mat-fab color="primary" (click)="updateSong()" [disabled]="!form.valid">
+                    <mat-icon>save</mat-icon>
+                </button>
             </div>
         </div>
     </form>

@@ -1,7 +1,9 @@
 import { Component, Input, OnChanges } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
+import { Database, ref, set } from '@angular/fire/database';
 
 import { Song } from 'src/app/models/common.model';
+import { CommonService } from 'src/app/services/common.service';
 
 @Component({
   selector: 'app-song-detail',
@@ -13,7 +15,14 @@ export class SongDetailComponent implements OnChanges {
 
   public form: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  public get genre(): AbstractControl {
+    return this.form.get('genre') as AbstractControl;
+  }
+
+  constructor(
+    private database: Database,
+    private fb: FormBuilder,
+  ) {
     this.form = this.createForm();
   }
 
@@ -23,8 +32,19 @@ export class SongDetailComponent implements OnChanges {
     }
   }
 
+  public updateSong(): void {
+    const song: Song = {
+      ...this.form.getRawValue(),
+      genre: this.genre.value ? this.genre.value.split(',') : [],
+      duration: this.song.duration
+    }
+
+    set(ref(this.database, 'songs/' + this.song.id), song);
+  }
+
   private createForm(): FormGroup {
     return this.fb.group({
+      id: 0,
       title: '',
       author: '',
       year: '',
@@ -39,9 +59,10 @@ export class SongDetailComponent implements OnChanges {
 
   private setForm(song: Song): void {
     this.form.patchValue({
+      id: song.id,
       title: song.title,
       author: song.author,
-      year: song.year.toString(),
+      year: song.year,
       album: song.album,
       genre: song.genre.join(', '),
       label: song.label,
@@ -50,7 +71,7 @@ export class SongDetailComponent implements OnChanges {
       producer: song.producer
     });
 
-    this.form.disable();
+    this.form.get('duration')?.disable();
   }
 
   private getDuration(duration: number): string {

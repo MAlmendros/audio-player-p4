@@ -9,3 +9,11 @@ mat-label {
 input {
     color: #000 !important;
 }
+
+.btn-update {
+    text-align: right;
+    
+    button {
+        box-shadow: none;
+    }
+}
