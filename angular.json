@@ -107,6 +107,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "audio-player:build:production",
+            "firebaseProject": "audio-player-4",
+            "firebaseHostingSite": "audio-player-4"
+          }
         }
       }
     }

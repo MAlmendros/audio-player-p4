@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "audio-player-4": {
+      "hosting": {
+        "audio-player": [
+          "audio-player-4"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "audio-player-4"
+  }
+}

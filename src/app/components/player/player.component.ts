@@ -20,6 +20,7 @@ export class PlayerComponent implements OnChanges {
   public currentTime: number = 0;
   public duration: string = "";
   public durationTime: number = 0;
+  public percentage: number = 0;
   public volume: number = 50;
 
   private audio;
@@ -35,6 +36,7 @@ export class PlayerComponent implements OnChanges {
       const seconds = Math.trunc(this.audio.currentTime - (minutes * 60));
 
       this.currentTime = this.audio.currentTime;
+      this.percentage = (this.currentTime * 100) / this.durationTime;
       this.current = `${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
     });
   }

@@ -1,11 +1,31 @@
 import { Injectable } from '@angular/core';
+import { getDatabase, ref, onValue } from "firebase/database";
 import { Song } from '../models/common.model';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommonService {
-  private songsList: Song[] = [
+  private songs: Song[] = [];
+  private _observableSongs: BehaviorSubject<Song[]> = new BehaviorSubject([] as Song[]);
+
+  public get songsList(): Observable<Song[]> { return this._observableSongs.asObservable() }
+
+  constructor() { }
+
+  public getSongsList(): void {
+    const database = getDatabase();
+    const dbRef = ref(database, 'songs/');
+    
+    onValue(dbRef, (snapshot) => {
+      this.songs = Object.entries(snapshot.val()).map((e) => e[1] as Song);
+      this._observableSongs.next(this.songs);
+    });
+  }
+
+  // ORIGINAL DATA
+  /* private songsList: Song[] = [
     {
       id: 146661,
       title: 'Futuristic Beat',
@@ -71,11 +91,5 @@ export class CommonService {
       producer: 'Luis del Olmo',
       showDetails: false
     }
-  ];
-
-  constructor() { }
-
-  public getSongsList(): Song[] {
-    return this.songsList;
-  }
+  ]; */
 }

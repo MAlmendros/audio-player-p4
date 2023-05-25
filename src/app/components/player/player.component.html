@@ -27,21 +27,19 @@
         </div>
     </div>
 
-    <div class="row pb-4 mx-4">
-        <div class="player-progress col-9 mt-4">
+    <div class="row pt-4 mx-5">
+        <div class="player-progress col-10 d-flex justify-content-center my-auto">
             <span class="player-progress-time">{{ current }}</span>
 
-            <progress
-                class="player-progress-bar"
-                id="player-progress-seek"
-                max="{{ durationTime }}"
-                value="{{ currentTime }}">
-            </progress>
+            <div class="player-progress-bar my-auto p-2">
+                <mat-progress-bar mode="determinate" [value]="percentage"></mat-progress-bar>
+            </div>
+            
             <span class="player-progress-time">{{ duration }}</span>
 
         </div>
 
-        <div class="player-volume col-3 mt-2">
+        <div class="player-volume col-2">
             <mat-slider min="0" max="100" step="1" [displayWith]="formatVolume" showTickMarks discrete>
                 <input [value]="volume" (valueChange)="changeVolume($event)" matSliderThumb>
             </mat-slider>

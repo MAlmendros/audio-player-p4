@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Database } from '@angular/fire/database';
 import { Song } from './models/common.model';
 import { CommonService } from './services/common.service';
 
@@ -13,10 +14,14 @@ export class AppComponent {
   public songsList: Song[] = [];
   public selectedSong: Song = {} as Song;
  
-  constructor(private service: CommonService) { }
+  constructor(private database: Database, private service: CommonService) { }
 
   public ngOnInit(): void {
-    this.songsList = this.service.getSongsList();
+    this.service.songsList.subscribe({
+      next: (songsList) => this.songsList = songsList
+    });
+
+    this.service.getSongsList();
   }
 
   public playSong(song: Song): void {
